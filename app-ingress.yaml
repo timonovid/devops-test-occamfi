@@ -4,21 +4,20 @@ metadata:
   name: flask-web-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    # cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
-  # tls:
-  # - hosts:
-  #   - app.mydomen.com
-  #   secretName: app-tls
+  tls:
+  - hosts:
+    - app.janbo.com
   rules:
-  - host: app.mydomen.com
+  - host: app.janbo.com
     http:
       paths:
       - pathType: Prefix
         path: "/"
         backend:
           service:
-            name: hello-minikube1
+            name: flask-web-service
             port:
               number: 80
